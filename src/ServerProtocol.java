@@ -8,7 +8,7 @@ public class ServerProtocol extends JFrame
     JButton exit = new JButton("Exit");
     JTextArea textArea = new JTextArea();
 
-    public ServerProtocol()
+    public ServerProtocol(int port) throws IOException
     {
         textArea.setBounds(10, 10, 1000, 600);
         textArea.setFont(new Font(Font.DIALOG, Font.PLAIN, 15));
@@ -26,24 +26,12 @@ public class ServerProtocol extends JFrame
 
         setTitle("Server Protocol");
         setLayout(null);
-
-        setVisible(true);
-        revalidate();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         exit.addActionListener(e -> System.exit(0));
-    }
 
-    public void start(int port) throws IOException
-    {
         SocketServer s = new SocketServer(port);
-        textArea.append(s.outputs());
-
-
-
     }
-
 
 }

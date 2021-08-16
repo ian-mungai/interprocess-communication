@@ -1,9 +1,12 @@
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SocketServer
 {
-    DataInputStream dis;
+    DataInputStream inputData;
+    DataOutputStream outputData;
     Socket s;
 
     public SocketServer(int port) throws IOException
@@ -12,19 +15,28 @@ public class SocketServer
         System.out.println("Server Socket is online on port " + port);
         s = ss.accept();
         System.out.println("Connection with client established");
-    }
 
-    public String outputs() throws IOException
-    {
-        dis = new DataInputStream(s.getInputStream());
-        String str ="";
+        ArrayList<String> questions = new ArrayList<String>();
+        ArrayList<String> responses = new ArrayList<String>();
+        questions.add("Enter Student Number : ");
+        questions.add("Enter Student Name : ");
+        questions.add("Enter Faculty, Course and Degree : ");
+        questions.add("Enter Personal Code : ");
 
-        while(dis != null)
+        for(int i=0; i<4; i++)
         {
-            str = dis.readUTF();
-            break;
+            outputData = new DataOutputStream(s.getOutputStream());
+            outputData.writeUTF(questions.get(i));
+            outputData.flush();
+
+            inputData = new DataInputStream(s.getInputStream());
+            responses.add(inputData.readUTF());
+            System.out.println(responses.get(i));
+
+            outputData.writeUTF("Response received : " + responses.get(i));
+
         }
 
-        return str;
     }
+
 }

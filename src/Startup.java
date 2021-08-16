@@ -56,20 +56,13 @@ public class Startup extends JFrame
 
         submit.addActionListener(e -> {
             try {
-                int portNumber = Integer.parseInt(port.getText());
-                String ipAddress = ip.getText();
+                int portNumber = Integer.parseInt(port.getText().trim());
+                String ipAddress = ip.getText().trim();
 
                 dispose();
-                setVisible(false);
 
-                ServerProtocol sp = new ServerProtocol();
-                sp.start(portNumber);
-                sp.setVisible(true);
-
-                ClientProtocol cp = new ClientProtocol(ipAddress,portNumber);
-                cp.setVisible(true);
-
-                System.exit(0);
+                SocketServer ss = new SocketServer(portNumber);
+                SocketClient sc = new SocketClient(ipAddress,portNumber);
 
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());

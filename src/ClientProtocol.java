@@ -47,7 +47,6 @@ public class ClientProtocol extends JFrame
 
         setTitle("Client Protocol");
         setLayout(null);
-        setVisible(true);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -58,7 +57,6 @@ public class ClientProtocol extends JFrame
 
                 String inputText = input.getText();
                 input.setText(null);
-                s.inputs(inputText);
 
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
@@ -68,5 +66,6 @@ public class ClientProtocol extends JFrame
         exit.addActionListener(e -> System.exit(0));
 
     }
+
 
 }
