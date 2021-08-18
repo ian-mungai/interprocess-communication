@@ -10,6 +10,8 @@ public class ServerProtocol extends JFrame
 
     public ServerProtocol(int port) throws IOException
     {
+        SocketServer ss = new SocketServer(port);
+
         textArea.setBounds(10, 10, 1000, 600);
         textArea.setFont(new Font(Font.DIALOG, Font.PLAIN, 15));
         textArea.setBackground(new Color(255, 255, 255));
@@ -29,8 +31,6 @@ public class ServerProtocol extends JFrame
         setVisible(true);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        SocketServer ss = new SocketServer(port);
 
         exit.addActionListener(e -> System.exit(0));
 

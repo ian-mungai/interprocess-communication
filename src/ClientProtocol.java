@@ -13,6 +13,8 @@ public class ClientProtocol extends JFrame
 
     public ClientProtocol(String ip, int port) throws IOException
     {
+        SocketClient sc = new SocketClient(ip,port);
+
         textArea.setBounds(10,10, 1000,580);
         textArea.setFont(new Font(Font.DIALOG,Font.PLAIN,15));
         textArea.setBackground(new Color(255, 255, 255));

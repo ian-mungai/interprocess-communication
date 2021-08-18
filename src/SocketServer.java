@@ -32,7 +32,6 @@ public class SocketServer
 
             inputData = new DataInputStream(s.getInputStream());
             responses.add(inputData.readUTF());
-            System.out.println(responses.get(i));
 
             outputData.writeUTF("Response received : " + responses.get(i));
 
