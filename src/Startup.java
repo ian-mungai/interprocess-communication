@@ -75,8 +75,6 @@ public class Startup extends JFrame
         setSize(500,300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-
         submit.addActionListener(e -> {
             try {
                 int portNumber = Integer.parseInt(port.getText().trim());
@@ -100,8 +98,6 @@ public class Startup extends JFrame
                 System.err.println(ex.getMessage());
             }
         });
-
-
 
         exit.addActionListener(e -> System.exit(0));
     }
