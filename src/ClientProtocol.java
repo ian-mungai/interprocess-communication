@@ -47,10 +47,9 @@ public class ClientProtocol extends JFrame
 
         setTitle("Client Protocol");
         setLayout(null);
+        setVisible(true);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        SocketClient s = new SocketClient(ip,port);
 
         submit.addActionListener(e -> {
             try {

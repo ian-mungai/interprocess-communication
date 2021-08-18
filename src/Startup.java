@@ -9,6 +9,9 @@ public class Startup extends JFrame
     JTextField ip = new JTextField();
     JLabel portLabel = new JLabel("Enter Port number : ");
     JTextField port = new JTextField();
+    JLabel windows = new JLabel("Select the windows to launch : ");
+    JCheckBox client = new JCheckBox("Client");
+    JCheckBox server = new JCheckBox("Server");
 
     public Startup()
     {
@@ -32,12 +35,27 @@ public class Startup extends JFrame
         port.setBackground(new Color(255, 255, 255));
         port.setForeground(Color.black);
 
-        submit.setBounds(10,150,200,50);
+        windows.setBounds(10,140,250,40);
+        windows.setFont(new Font(Font.DIALOG,Font.PLAIN,15));
+        windows.setBackground(new Color(255, 255, 255));
+        windows.setForeground(Color.black);
+
+        server.setBounds(250,140,100,40);
+        server.setFont(new Font(Font.DIALOG,Font.PLAIN,15));
+        server.setBackground(new Color(255, 255, 255));
+        server.setForeground(Color.black);
+
+        client.setBounds(350,140,100,40);
+        client.setFont(new Font(Font.DIALOG,Font.PLAIN,15));
+        client.setBackground(new Color(255, 255, 255));
+        client.setForeground(Color.black);
+
+        submit.setBounds(10,200,200,50);
         submit.setFont(new Font(Font.DIALOG,Font.PLAIN,15));
         submit.setBackground(new Color(255, 255, 255));
         submit.setForeground(Color.black);
 
-        exit.setBounds(250,150,200,50);
+        exit.setBounds(250,200,200,50);
         exit.setFont(new Font(Font.DIALOG,Font.PLAIN,15));
         exit.setBackground(new Color(255, 255, 255));
         exit.setForeground(Color.black);
@@ -46,13 +64,18 @@ public class Startup extends JFrame
         add(ip);
         add(portLabel);
         add(port);
+        add(windows);
+        add(client);
+        add(server);
         add(submit);
         add(exit);
 
         setTitle("Startup");
         setLayout(null);
-        setSize(500,250);
+        setSize(500,300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
 
         submit.addActionListener(e -> {
             try {
@@ -61,13 +84,24 @@ public class Startup extends JFrame
 
                 dispose();
 
-                SocketServer ss = new SocketServer(portNumber);
-                SocketClient sc = new SocketClient(ipAddress,portNumber);
+                if(server.isSelected())
+                {
+                    ServerThread sp = new ServerThread(portNumber);
+                    sp.start();
+                }
+
+                if(client.isSelected())
+                {
+                    ClientThread cp = new ClientThread(ipAddress,portNumber);
+                    cp.start();
+                }
 
             } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         });
+
+
 
         exit.addActionListener(e -> System.exit(0));
     }

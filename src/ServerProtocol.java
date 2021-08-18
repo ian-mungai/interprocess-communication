@@ -26,12 +26,14 @@ public class ServerProtocol extends JFrame
 
         setTitle("Server Protocol");
         setLayout(null);
+        setVisible(true);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        SocketServer ss = new SocketServer(port);
+
         exit.addActionListener(e -> System.exit(0));
 
-        SocketServer s = new SocketServer(port);
     }
 
 }

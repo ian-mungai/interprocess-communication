@@ -12,6 +12,7 @@ public class SocketClient
     {
         String response = "Input received : ";
         String question;
+
         s = new Socket(ip ,port);
         System.out.println("Connection with server established");
 

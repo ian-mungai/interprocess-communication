@@ -8,6 +8,7 @@ public class SocketServer
     DataInputStream inputData;
     DataOutputStream outputData;
     Socket s;
+    int port;
 
     public SocketServer(int port) throws IOException
     {
