@@ -10,13 +10,11 @@ public class SocketClient
         System.out.println("Connection with server established");
 
         String question;
-
+        DataInputStream inputData = new DataInputStream(s.getInputStream());
+        DataOutputStream outputData = new DataOutputStream(s.getOutputStream());
 
         for(int i=0; i<4; i++)
         {
-            DataInputStream inputData = new DataInputStream(s.getInputStream());
-            DataOutputStream outputData = new DataOutputStream(s.getOutputStream());
-
             question = inputData.readUTF();
             System.out.println(question);
 

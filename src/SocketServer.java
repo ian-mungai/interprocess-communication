@@ -5,16 +5,11 @@ import java.util.Scanner;
 
 public class SocketServer
 {
-    DataInputStream inputData;
-    DataOutputStream outputData;
-    Socket s;
-    int port;
-
     public SocketServer(int port) throws IOException
     {
         ServerSocket ss = new ServerSocket(port);
         System.out.println("Server Socket is online on port " + port);
-        s = ss.accept();
+        Socket s = ss.accept();
         System.out.println("Connection with client established");
 
         ArrayList<String> questions = new ArrayList<String>();
@@ -24,17 +19,17 @@ public class SocketServer
         questions.add("Enter Faculty, Course and Degree : ");
         questions.add("Enter Personal Code : ");
 
+        DataInputStream inputData = new DataInputStream(s.getInputStream());
+        DataOutputStream outputData = new DataOutputStream(s.getOutputStream());
+
         for(int i=0; i<4; i++)
         {
-            outputData = new DataOutputStream(s.getOutputStream());
             outputData.writeUTF(questions.get(i));
             outputData.flush();
 
-            inputData = new DataInputStream(s.getInputStream());
             responses.add(inputData.readUTF());
 
             outputData.writeUTF("Response received : " + responses.get(i));
-
         }
 
     }
